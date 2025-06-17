@@ -15,10 +15,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from board import views # board 앱의 views 모듈을 import
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('board/', views.index) # views.py 파일의 index 함수를 의미
+    # path('board/', views.index) # views.py 파일의 index 함수를 의미
+    path('board/', include('board.urls'))  # board 앱의 index 뷰를 'board_index'라는 이름으로 매핑
 ]
