@@ -9,6 +9,17 @@
         </a></li>
         {% endfor %}
     </ul>
+    <div class="pagination">
+        {% if questions.has_previous %}
+            <a href="?page={{ questions.previous_page_number }}">이전</a>
+        {% endif %}
+
+        <span>페이지 {{ questions.number }} / {{ questions.paginator.num_pages }}</span>
+
+        {% if questions.has_next %}
+            <a href="?page={{ questions.next_page_number }}">다음</a>
+        {% endif %}
+    </div>
     <div class="container">
         <button><a href="{% url 'board:create_question' %}" class="btn btn-primary">질문 작성</a> <!-- 질문 작성 버튼 추가 -->
 {% else %}

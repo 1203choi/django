@@ -1,12 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Question, Answer
+from django.core.paginator import Paginator
 
 def index(request): 
+    page = request.GET.get('page', 1)
     # 모든 질문 조회
     questions = Question.objects.order_by('-created_at')  
+    paginator = Paginator(questions, 10)  # 페이지당 10개의 질문 표시
+    paginated_questions = paginator.get_page(page)  # 현재 페이지에 해당하는 질문들
     # 템플릿 렌더링
-    return render(request, 'board/index.html', {'questions': questions})
+    return render(request, 'board/index.html', {'questions': paginated_questions})
 
 # Create your views here.
 
