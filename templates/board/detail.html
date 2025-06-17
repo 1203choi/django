@@ -1,0 +1,29 @@
+
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h4>답변개수 : {{question}}
+<div class="container">
+
+    <h1>{{question.subject}}</h1>
+    <p>{{question.content}}</p>
+    <div>
+        <ul>
+            {% for answer in question.answer_set.all %}
+                <li>{{ answer.content }}</li>
+            {% endfor %}
+        <ul>
+    </div>
+    {% endblock %}
+
+
+
+
+
+<form method="post" action="">
+    {% csrf_token %}
+    <textarea name="content" rows="20"></textarea>
+    <input type="submit" value="댓글 작성">  
+</form>

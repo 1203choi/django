@@ -7,7 +7,8 @@ app_name = 'board'
 
 # URL 패턴정의
 urlpatterns = [
-    path('', views.index, name='board_index'),  # board 앱의 index 뷰를 'board_index'라는 이름으로 매핑
-    # path('test/abc', views.index), # board 앱의 index 뷰를 기본 URL로 설정
-    path('<int:question_id>/', views.detail, name='board_detail'),  # 특정 질문의 상세 페이지를 'board_detail'이라는 이름으로 매핑
+    path('', views.index, name='board_index'),
+    path('<int:question_id>/', views.detail, name='board_detail'),
+    path('question/create/', views.create_question, name='create_question'),
+    
 ]
